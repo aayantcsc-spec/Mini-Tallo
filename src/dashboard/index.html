@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="mini-tallo-token" content="__TOKEN__">
+<title>Mini Tallo</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="b1">Mini Tallo</span><span class="b2" id="version"></span></div>
+  <div class="menu">
+    <label><span><u>K</u>: Company</span> <select id="company"></select></label>
+    <label><span>From</span> <input type="date" id="from"></label>
+    <label><span>To</span> <input type="date" id="to"></label>
+    <button id="goto" type="button" class="goto"><u>G</u>: Go To</button>
+  </div>
+  <label class="switch"><input type="checkbox" id="editing"> Allow editing</label>
+</header>
+<div class="strip"><span id="crumb"></span><span id="strip-company"></span><span id="strip-period"></span></div>
+<div id="banner" hidden></div>
+<div id="banner-edit" hidden>Editing is on. New, Edit and Delete change the books in TallyPrime straight away and cannot be undone from here.</div>
+<div class="layout">
+  <nav id="nav" aria-label="Gateway"></nav>
+  <main id="main" aria-live="polite"></main>
+  <aside id="keys" aria-label="Keys">
+    <button type="button" id="key-period"><b>F2</b>: Period</button>
+    <button type="button" id="key-company"><b>F3</b>: Select Company</button>
+    <button type="button" id="refresh"><b>F5</b>: Refresh</button>
+    <div class="gap"></div>
+    <button type="button" id="key-home"><b>H</b>: Dashboard</button>
+    <button type="button" id="key-goto"><b>G</b>: Go To</button>
+    <div class="gap"></div>
+    <div id="page-keys"></div>
+  </aside>
+</div>
+<div id="goto-panel" hidden></div>
+<script src="/app.js"></script>
+</body>
+</html>

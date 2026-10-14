@@ -1,0 +1,57 @@
+{
+  "manifest_version": "0.2",
+  "name": "mini-tallo",
+  "display_name": "Mini Tallo",
+  "version": "0.1.0",
+  "description": "Lets your assistant read the TallyPrime books open on this computer and prepare voucher import files. It does not change your books unless you turn posting on and approve each voucher.",
+  "author": { "name": "Mini Tallo" },
+  "license": "Apache-2.0",
+  "keywords": ["tally", "tallyprime", "accounting", "india"],
+  "server": {
+    "type": "node",
+    "entry_point": "src/server.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/src/server.js"],
+      "env": {
+        "MINI_TALLO_TERMS_ACCEPTED": "${user_config.accept_terms}",
+        "MINI_TALLO_POSTING": "${user_config.posting}",
+        "MINI_TALLO_REDACT": "${user_config.redact}",
+        "MINI_TALLO_PORT": "${user_config.tally_port}"
+      }
+    }
+  },
+  "user_config": {
+    "accept_terms": {
+      "type": "boolean",
+      "title": "I accept the Mini Tallo Terms of Use (version 2026-10.2)",
+      "description": "Read TERMS.md first. Every tool refuses with terms_not_accepted until this is on.",
+      "default": false,
+      "required": true
+    },
+    "posting": {
+      "type": "boolean",
+      "title": "Allow posting vouchers to TallyPrime",
+      "description": "Off by default. When on, each voucher still waits for your approval in a separate Mini Tallo window. A posted voucher cannot be undone from here.",
+      "default": false,
+      "required": false
+    },
+    "redact": {
+      "type": "string",
+      "title": "Privacy: none, names or narrations",
+      "description": "names shortens party and ledger names and bank account numbers to their first two and last two characters. narrations drops narrations. One value, not both. Neither hides amounts, company names, GSTIN, PAN or contact details.",
+      "default": "none",
+      "required": false
+    },
+    "tally_port": {
+      "type": "number",
+      "title": "TallyPrime gateway port",
+      "description": "The port TallyPrime listens on, on this computer. TallyPrime's default is 9000.",
+      "default": 9000,
+      "min": 1,
+      "max": 65535,
+      "required": false
+    }
+  },
+  "compatibility": { "platforms": ["win32", "darwin", "linux"], "runtimes": { "node": ">=20.0.0" } }
+}
